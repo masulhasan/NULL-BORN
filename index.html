@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>NULL//BORN — we became it</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Courier+Prime:wght@400;700&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- =================== CRT SCANLINES / NOISE OVERLAY =================== -->
+<div class="crt" aria-hidden="true">
+  <div class="scanlines"></div>
+  <div class="vignette"></div>
+  <div class="flicker"></div>
+</div>
+
+<!-- =================== CUSTOM CURSOR =================== -->
+<div id="cursor" aria-hidden="true">
+  <div class="cur-h"></div>
+  <div class="cur-v"></div>
+  <div class="cur-ring"></div>
+  <div class="cur-coords"><span id="curX">X:0000</span> <span id="curY">Y:0000</span></div>
+</div>
+
+<!-- =================== DEVTOOLS EASTER EGG =================== -->
+<div class="classified-leak" data-classified>
+  <pre>
+╔══════════════════════════════════════╗
+║  CLASSIFIED // NULL//BORN INTERNAL   ║
+║  YOU FOUND THE LEAK.                 ║
+║  Welcome, operator. Stay quiet.      ║
+║  Signal: 41.3851°N / 2.1734°E        ║
+╚══════════════════════════════════════╝</pre>
+</div>
+
+<!-- =================== BOOT SEQUENCE =================== -->
+<div id="boot" class="boot">
+  <div class="boot-inner">
+    <div class="boot-head">
+      <span class="boot-led"></span>
+      <span class="boot-title">NULL//BORN OS</span>
+      <span class="boot-ver">v0.01a</span>
+    </div>
+    <pre id="bootLog" class="boot-log"></pre>
+    <div class="boot-bar">
+      <div class="boot-bar-fill" id="bootBarFill"></div>
+      <div class="boot-bar-pct" id="bootBarPct">00%</div>
+    </div>
+    <div class="boot-foot">
+      <span>NODE: aurora-07</span>
+      <span>UPLINK: 0.0.0.0 ↔ ████.████.████</span>
+      <span class="blink">█</span>
+    </div>
+  </div>
+  <div class="boot-glitch" id="bootGlitch"></div>
+</div>
+
+<!-- =================== TOP HUD =================== -->
+<header class="hud" id="hud">
+  <div class="hud-l">
+    <span class="dot"></span>
+    <span>NULL//BORN</span>
+    <span class="sep">/</span>
+    <span class="dim">node.aurora-07</span>
+  </div>
+  <nav class="hud-c">
+    <a href="#manifesto" data-nav>01 manifesto</a>
+    <a href="#ops"       data-nav>02 ops</a>
+    <a href="#members"   data-nav>03 members</a>
+    <a href="#trans"     data-nav>04 transmission</a>
+    <a href="#join"      data-nav>05 join</a>
+  </nav>
+  <div class="hud-r">
+    <span class="dim">uplink</span>
+    <span class="ok">SECURE</span>
+    <span class="sep">/</span>
+    <span id="hudClock">--:--:--</span>
+  </div>
+</header>
+
+<!-- =================== HERO / GLOBE =================== -->
+<section class="hero" id="hero">
+  <canvas id="globe"></canvas>
+  <div class="hero-ui">
+    <div class="hero-corners">
+      <span class="c tl">┌</span><span class="c tr">┐</span>
+      <span class="c bl">└</span><span class="c br">┘</span>
+    </div>
+
+    <div class="hero-meta hero-meta-tl">
+      <div>SIGNAL // ACTIVE</div>
+      <div class="dim">enc: aes-256 / pq-kyber</div>
+      <div class="dim">ttl: 03:41:22</div>
+    </div>
+    <div class="hero-meta hero-meta-tr">
+      <div>NODES <span class="ok">1,447</span></div>
+      <div>BREACH <span class="warn">07</span></div>
+      <div class="dim">last seen 00:00:03</div>
+    </div>
+    <div class="hero-meta hero-meta-bl">
+      <pre class="ascii">
+   _   _ _   _ _    _    
+  | \ | | | | | |  | |   
+  |  \| | | | | |  | |   
+  |     | |_| | |__| |__ 
+  |_|\__|\___/|____|____|
+      </pre>
+    </div>
+    <div class="hero-meta hero-meta-br">
+      <div>↓ scroll to descend</div>
+      <div class="dim">layer 00 / surface</div>
+    </div>
+
+    <div class="hero-center">
+      <div class="tag">[ collective :: anonymous :: leaderless ]</div>
+      <h1 class="title" data-glitch>NULL//BORN</h1>
+      <div class="sub" data-glitch>we didn't break the system. we became it.</div>
+      <div class="hero-bar">
+        <span>◢◤</span><span>◢◤</span><span>◢◤</span><span class="grow"></span>
+        <span class="dim">handshake.0xA3F1</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== 01 MANIFESTO =================== -->
+<section class="manifesto" id="manifesto" data-screen-label="01 Manifesto">
+  <div class="section-marker"><span class="num">01</span><span class="lbl">// manifesto</span><span class="line"></span></div>
+  <div class="mani-stage">
+    <div class="mani-word" data-z="0">WE</div>
+    <div class="mani-word" data-z="1">ARE</div>
+    <div class="mani-word" data-z="2">EVERY</div>
+    <div class="mani-word" data-z="3">WHERE</div>
+  </div>
+  <div class="mani-ticker" id="maniTicker"></div>
+  <div class="mani-creed">
+    <p>we are the unseen handshake between machines.</p>
+    <p>we are the dropped packet that returns with teeth.</p>
+    <p>we are the cursor blinking inside your firewall.</p>
+    <p>you taught the internet to listen — we taught it to <em>answer back</em>.</p>
+  </div>
+</section>
+
+<!-- =================== 02 OPERATIONS =================== -->
+<section class="ops" id="ops" data-screen-label="02 Operations">
+  <div class="section-marker"><span class="num">02</span><span class="lbl">// operations · classified</span><span class="line"></span></div>
+
+  <div class="ops-grid" id="opsGrid">
+    <!-- cards injected by JS -->
+  </div>
+</section>
+
+<!-- =================== 03 MEMBERS =================== -->
+<section class="members" id="members" data-screen-label="03 Members">
+  <div class="section-marker"><span class="num">03</span><span class="lbl">// operators · 06 active</span><span class="line"></span></div>
+  <div class="mem-grid" id="memGrid"></div>
+</section>
+
+<!-- =================== 04 TRANSMISSION =================== -->
+<section class="trans" id="trans" data-screen-label="04 Transmission">
+  <div class="section-marker"><span class="num">04</span><span class="lbl">// intercepted transmission · live</span><span class="line"></span></div>
+
+  <div class="trans-shell">
+    <div class="trans-head">
+      <div class="tabs">
+        <span class="tab on">/dev/intercept</span>
+        <span class="tab">/dev/null</span>
+        <span class="tab">/dev/burn</span>
+      </div>
+      <div class="trans-actions">
+        <button class="btn" id="decryptBtn">DECRYPT ▣</button>
+        <button class="btn ghost" id="clearBtn">CLEAR</button>
+      </div>
+    </div>
+    <pre id="transFeed" class="trans-feed"></pre>
+    <div class="trans-foot">
+      <span class="ok">● rx</span> <span id="rxCount">0</span> packets
+      <span class="sep">/</span>
+      entropy <span id="entropy">0.000</span>
+      <span class="sep">/</span>
+      origin <span class="dim">unknown</span>
+    </div>
+  </div>
+</section>
+
+<!-- =================== 05 JOIN =================== -->
+<section class="join" id="join" data-screen-label="05 Join">
+  <div class="section-marker"><span class="num">05</span><span class="lbl">// join · one signal · no return</span><span class="line"></span></div>
+  <form class="join-form" id="joinForm" autocomplete="off">
+    <div class="join-prompt">&gt;</div>
+    <input id="joinInput" type="text" placeholder="ENTER YOUR SIGNAL_" spellcheck="false" />
+    <div class="join-cursor"></div>
+  </form>
+  <div class="join-meta">
+    <span>we do not reply.</span>
+    <span class="dim">we arrive.</span>
+  </div>
+  <div class="join-receipt" id="joinReceipt"></div>
+</section>
+
+<!-- =================== FOOTER =================== -->
+<footer class="foot">
+  <div class="foot-row">
+    <span>NULL//BORN © whenever</span>
+    <span class="dim">there is no contact page.</span>
+    <span class="dim">there is no office.</span>
+    <span class="dim">there is no us.</span>
+    <span>↑ return to surface</span>
+  </div>
+  <pre class="foot-ascii">
+█▓▒░  end of stream  ░▒▓█    if you can read this · you were not supposed to
+  </pre>
+</footer>
+
+<!-- =================== INTRUDER POPUP =================== -->
+<div id="intruder" class="intruder">
+  <div class="intruder-bar">! INTRUDER DETECTED</div>
+  <div class="intruder-body">
+    <div>SOURCE: <span id="intruderIp">187.044.221.013</span></div>
+    <div>VECTOR: passive · listening</div>
+    <div class="dim">isolating in 2.0s …</div>
+  </div>
+</div>
+
+<!-- =================== RED ALERT OVERLAY (KONAMI) =================== -->
+<div id="alert" class="alert">
+  <div class="alert-bg"></div>
+  <div class="alert-strobe"></div>
+  <div class="alert-banner top">!! RED ALERT !! RED ALERT !! RED ALERT !! RED ALERT !!</div>
+  <div class="alert-banner bot">!! RED ALERT !! RED ALERT !! RED ALERT !! RED ALERT !!</div>
+  <div class="alert-center">
+    <div class="alert-title">KONAMI BREACH</div>
+    <div class="alert-sub">you remembered the old gods. welcome home.</div>
+  </div>
+</div>
+
+<!-- =================== FULL-SCREEN GLITCH =================== -->
+<div id="bigGlitch" class="big-glitch"></div>
+
+<script src="lib/glitch.js"></script>
+<script src="lib/audio.js"></script>
+<script src="components/boot.js"></script>
+<script src="components/globe.js"></script>
+<script src="components/operations.js"></script>
+<script src="components/members.js"></script>
+<script src="components/transmission.js"></script>
+<script src="components/extras.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
